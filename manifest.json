@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Structy Sync for Firefox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically commit your passing Structy solutions to a GitHub repository. Not affiliated with Structy.",
   "icons": {
     "48": "assets/icon.svg",
