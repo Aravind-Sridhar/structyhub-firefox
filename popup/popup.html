@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>StructyHub</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>StructyHub</h1>
+  <p id="status" class="muted">Checking…</p>
+
+  <div id="perm" class="warn hidden">
+    Firefox hasn't granted access to Structy and GitHub yet.
+    <button id="grant" type="button">Grant access</button>
+  </div>
+
+  <form id="form">
+    <label for="token">GitHub token</label>
+    <input id="token" type="password" autocomplete="off" spellcheck="false"
+           placeholder="github_pat_… or ghp_…">
+    <p class="hint">
+      <a href="https://github.com/settings/tokens/new?scopes=repo&description=StructyHub%20Firefox" target="_blank">Create a classic token</a>
+      with <code>repo</code> scope, or a fine-grained token with
+      <b>Contents: read &amp; write</b> + <b>Administration: read &amp; write</b>.
+    </p>
+
+    <label for="repo">Repository name</label>
+    <input id="repo" type="text" spellcheck="false" placeholder="Structy-Hub">
+
+    <label class="check"><input id="private" type="checkbox" checked> Create as private repo</label>
+
+    <div class="row">
+      <button type="submit">Save</button>
+      <button id="signout" type="button" class="secondary">Sign out</button>
+    </div>
+    <p id="msg" class="muted"></p>
+  </form>
+
+  <script src="popup.js"></script>
+</body>
+</html>
