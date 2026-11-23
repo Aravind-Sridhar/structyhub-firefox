@@ -11,7 +11,8 @@ Structy-Hub/
 ```
 
 ## Differences from the Chrome version
-- **Auth:** GitHub personal access token instead of OAuth. The original OAuth app's secret isn't public, and Firefox uses a different redirect URL, so a token works without a server.
+- **Auth:** GitHub App device flow (no client secret), with a personal access token as a fallback,
+  instead of an OAuth app. Access is limited to the repos you install the app on.
 - GitHub calls run in the background script, so the token never reaches the page.
 - Repos are **private by default** (toggle in the popup).
 - Fixes: UTF-8-safe base64 (non-ASCII text crashed `btoa`), waits for the test results to render instead of checking once, uses the repo's real default branch, and skips empty commits.
@@ -19,15 +20,27 @@ Structy-Hub/
 ## Install (temporary, for development)
 1. Open `about:debugging#/runtime/this-firefox`
 2. **Load Temporary Add-on…** → pick `manifest.json` in this folder.
-3. Click the toolbar icon → **Grant access** if prompted → paste a token → Save.
+3. Click the toolbar icon → **Grant access** if prompted → **Sign in with GitHub** (see below).
 
 Temporary add-ons are removed when Firefox restarts. For a permanent install, sign it via AMO
 (`web-ext sign --channel=unlisted`) or publish it on addons.mozilla.org.
 
-## Token
-- Classic: scope `repo` ([create](https://github.com/settings/tokens/new?scopes=repo&description=StructyHub%20Firefox)).
-- Fine-grained: *All repositories* (or pre-create the repo and select it), with **Contents: Read and write**
-  and **Administration: Read and write** (needed only for auto-creating the repo).
+## Sign in
+**Recommended: Sign in with GitHub.** This uses the
+[Structy Sync for Firefox](https://github.com/apps/structy-sync-for-firefox) GitHub App via the
+[device flow](https://docs.github.com/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app#using-the-device-flow-to-generate-a-user-access-token),
+so there is no client secret and no server.
+1. [Create your solutions repo](https://github.com/new?name=Structy-Hub) (tick *Add a README*, or the extension seeds one).
+2. [Install the app](https://github.com/apps/structy-sync-for-firefox/installations/new) on **only that repo**.
+3. In the popup click **Sign in with GitHub**, then **Copy code & open GitHub**, paste the code and approve.
+
+The app asks only for **Contents: read & write** (plus read-only metadata) on the repos you install it on.
+It can't create or delete repos or see anything else on your account. Sign out in the popup, and revoke it under
+[GitHub → Settings → Applications](https://github.com/settings/apps/authorizations).
+
+**Advanced: personal access token.** Paste one under *Advanced* in the popup. A fine-grained token
+limited to your solutions repo with **Contents: Read and write** is safest. Add
+**Administration: Read and write** only if you want the extension to create the repo for you.
 
 ## Attribution
 This project is a Firefox port of **[StructyHub](https://github.com/cbkinase/StructyHub)** by

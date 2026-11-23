@@ -35,3 +35,21 @@ a { color: var(--accent); }
 .warn { background: var(--warn-bg); padding: 8px; border-radius: 6px; margin-top: 8px; }
 .warn button { margin-top: 6px; display: block; }
 .hidden { display: none; }
+button.wide { width: 100%; margin-top: 12px; padding: 8px; }
+button:disabled { opacity: .6; cursor: progress; }
+section { margin-top: 8px; }
+.code {
+  font: 700 22px/1.2 ui-monospace, "SFMono-Regular", Menlo, monospace;
+  letter-spacing: 3px; text-align: center; padding: 10px;
+  border: 1px dashed var(--border); border-radius: 6px; margin: 6px 0;
+  user-select: all;
+}
+.spinner {
+  display: inline-block; width: 10px; height: 10px; vertical-align: -1px;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+details { margin-top: 12px; }
+summary { cursor: pointer; color: var(--muted); }
+details input[type="password"] { margin-top: 8px; }

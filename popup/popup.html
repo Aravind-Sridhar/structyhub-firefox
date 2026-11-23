@@ -14,24 +14,46 @@
     <button id="grant" type="button">Grant access</button>
   </div>
 
-  <form id="form">
-    <label for="token">GitHub token</label>
-    <input id="token" type="password" autocomplete="off" spellcheck="false"
-           placeholder="github_pat_… or ghp_…">
-    <p class="hint">
-      <a href="https://github.com/settings/tokens/new?scopes=repo&description=StructyHub%20Firefox" target="_blank">Create a classic token</a>
-      with <code>repo</code> scope, or a fine-grained token with
-      <b>Contents: read &amp; write</b> + <b>Administration: read &amp; write</b>.
-    </p>
+  <!-- Signed out: start device sign-in -->
+  <section id="signin" class="hidden">
+    <button id="signinBtn" type="button" class="wide">Sign in with GitHub</button>
+    <p id="signinErr" class="err"></p>
+  </section>
 
+  <!-- Device code waiting for approval -->
+  <section id="device" class="hidden">
+    <p>Enter this code on GitHub:</p>
+    <div id="userCode" class="code"></div>
+    <div class="row">
+      <button id="openGithub" type="button">Copy code &amp; open GitHub</button>
+      <button id="cancelSignin" type="button" class="secondary">Cancel</button>
+    </div>
+    <p class="muted"><span class="spinner"></span> Waiting for approval… you can close this popup.</p>
+  </section>
+
+  <!-- Signed in but the repo isn't reachable -->
+  <div id="repoWarn" class="warn hidden"></div>
+
+  <form id="form">
     <label for="repo">Repository name</label>
     <input id="repo" type="text" spellcheck="false" placeholder="Structy-Hub">
 
-    <label class="check"><input id="private" type="checkbox" checked> Create as private repo</label>
+    <details id="advanced">
+      <summary>Advanced: use a personal access token</summary>
+      <input id="token" type="password" autocomplete="off" spellcheck="false"
+             placeholder="github_pat_… or ghp_…">
+      <p class="hint">
+        A fine-grained token limited to your solutions repo with
+        <b>Contents: read &amp; write</b> is safest. With a token, the extension
+        can also create the repo for you
+        (needs <b>Administration: read &amp; write</b>).
+      </p>
+      <label class="check"><input id="private" type="checkbox" checked> Create new repo as private</label>
+    </details>
 
     <div class="row">
       <button type="submit">Save</button>
-      <button id="signout" type="button" class="secondary">Sign out</button>
+      <button id="signout" type="button" class="secondary hidden">Sign out</button>
     </div>
     <p id="msg" class="muted"></p>
   </form>

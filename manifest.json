@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "StructyHub for Firefox",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Automatically push your passing Structy solutions to a GitHub repository.",
   "icons": {
     "48": "assets/icon.svg",
@@ -16,12 +16,13 @@
       }
     }
   },
-  "permissions": ["webRequest", "storage"],
+  "permissions": ["webRequest", "storage", "alarms"],
   "host_permissions": [
     "https://structy.net/*",
     "https://www.structy.net/*",
     "https://api.structy.net/*",
-    "https://api.github.com/*"
+    "https://api.github.com/*",
+    "https://github.com/login/*"
   ],
   "background": {
     "scripts": ["scripts/background.js"]
