@@ -111,7 +111,7 @@ async function handleSubmission() {
     if (!result?.ok) throw new Error(result?.error || "Unknown upload error");
     showToast(result.skipped ? "No changes since last upload" : "Pushed to GitHub ✓");
   } catch (err) {
-    console.error("[StructyHub]", err);
+    console.error("[Structy Sync]", err);
     showToast(`GitHub upload failed: ${err.message}`, false, 6000);
   } finally {
     busy = false;

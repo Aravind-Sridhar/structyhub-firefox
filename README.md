@@ -1,4 +1,4 @@
-# StructyHub for Firefox
+# Structy Sync for Firefox
 
 Firefox port of [StructyHub](https://github.com/cbkinase/StructyHub) (MIT, © Cameron Beck).
 When every test passes on a Structy problem, the solution and problem prompt are committed to a GitHub repo:
@@ -50,6 +50,10 @@ API usage and commit approach come from that project; this port rewrites it for 
 The original copyright notice is kept in [LICENSE](LICENSE).
 
 Not affiliated with or endorsed by Structy or the original StructyHub author.
+
+## Privacy
+No analytics, no tracking, no developer server. Your code goes only to your GitHub repo.
+See [PRIVACY.md](PRIVACY.md).
 
 ## Caveat
 It depends on Structy's undocumented API (`api.structy.net/api/...`) and its DOM (Font Awesome

@@ -9,7 +9,7 @@ const POLL_ALARM = "device-flow-poll";
 
 const LANGUAGES = ["python3", "node", "cpp", "java"];
 const README_FOOTER =
-  "Made with StructyHub for Firefox (https://github.com/Aravind-Sridhar/structyhub-firefox), " +
+  "Made with Structy Sync for Firefox (https://github.com/Aravind-Sridhar/structyhub-firefox), " +
   "a port of StructyHub (https://github.com/cbkinase/StructyHub)";
 
 // ---------- Structy traffic watcher ----------
@@ -132,7 +132,7 @@ async function pollOnce() {
     }
   } catch (err) {
     // Network hiccup: keep trying until the code expires.
-    console.error("[StructyHub] device flow poll failed", err);
+    console.error("[Structy Sync] device flow poll failed", err);
     const { deviceFlow: flow } = await browser.storage.local.get("deviceFlow");
     if (flow) scheduleNextPoll(flow.interval);
   } finally {
